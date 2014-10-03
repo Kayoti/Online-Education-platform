@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HDFVR (16:9 640x360 setup)</title>
+<style type="text/css">
+body, a, ul, li, div, h1 {margin:0;padding:0;}
+body{font-family:"Lucida Grande", Verdana, Arial, Tahoma, Geneva, sans-serif;font-size:12px;background:#dfdfdf}
+h1{margin-left:20px;color:#fff;font-size:16px;padding-top:5px;}
+ul {list-style:none;padding-top:10px;margin-left:20px;}
+ul li {float:left;height:25px;}
+ul li a {display:block;background:#aecded; padding:5px 10px;margin:1px 2px;text-decoration:none;}
+ul li a.selected {position:relative;margin:0 2px;background:#dfdfdf;padding:6px 10px;}
+ul li a:hover{background:#dfdfdf;}
+#head {background:#484848;border-bottom:1px solid #4f83b8;}
+.clear {clear:both;}
+.border{
+	border:4px solid #efefef;
+	margin:auto 0px;
+	padding:0px;
+	}
+</style>
+</head>
+<body>
+<div id="head">
+	<h1>HD Flash Video Recorder (16:9 640x360 setup)</h1>
+	<ul>
+		<li><a href="VideoRecorder.html">Record 320x240 video</a></li>
+       	<li><a class="selected" href="VideoRecorder-sd-16by9.html">Record 640x360 (SD 16:9) video</a></li>
+		<li><a href="VideoRecorder-hd.html">Record 1280x720 (HD 16:9) video</a></li>
+		<li><a href="VideoRecorder-api.html">JS Control API</a></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<table width="100%">
+<tr>
+	<td valign="middle" align="center">
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="VideoRecorder" width="644" height="396"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="VideoRecorder.swf?userId=XXY&qualityurl=audio_video_quality_profiles/wide/640x360x30x90.xml&recorderId=123" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#333333" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<embed src="VideoRecorder.swf?userId=XXY&qualityurl=audio_video_quality_profiles/wide/640x360x30x90.xml&recorderId=123" quality="high" bgcolor="#333333"
+				width="644" height="396" name="VideoRecorder" align="middle"
+				play="true"
+				loop="false"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+				pluginspage="http://www.adobe.com/go/getflashplayer">
+			</embed>
+		</object>
+    </td>
+</tr>
+</table>
+	<h2>Congratulations on your purchase!</h2>
+	<h3>Here are a few things to get you started:</h3>
+<p>VideoRecorder.swf is embedded above, the size is 644x396 but the recording it will produce is 640x360.</p>
+<p>For <strong>installation instructions</strong> check out   <a href="http://hdfvr.com/documentation#1" target="_blank">http://hdfvr.com/documentation#1</a>.</p>
+<p><strong>How it works:</strong></p>
+<ol>
+  <li>Click RECORD to start recording.</li>
+  <li>Click STOP to stop the recording, the remaining buffered video and audio data will stream to the media server.</li>
+  <li> Click SAVE to call the <em>save</em> function(s) in the <a href="http://hdfvr.com/api" target="_blank">Php/ASP + JS APIs</a> .</li>
+</ol>
+<p>This HTML file contains the <a href="http://hdfvr.com/api#jsread" target="_blank">JS API</a>, If you click <strong>View Source</strong> you will see it.</p>
+<p><a href="http://hdfvr.com/documentation#part3" target="_blank">This article</a> explains where you will find the new recordings.</p>
+<p>For <strong>personalized support</strong> go to your client area on <a href="http://avchathq.com" target="_blank">http://avchathq.com</a> and submit a Support Ticket.</p>
+<p>An <strong>official forum</strong> with plenty of info is also available at <a href="http://avchathq.com/forum/index.php?/forum/13-hd-flash-video-recorder-httphdfvrcom/" target="_blank">http://avchathq.com/forum/</a>.</p>
+<p>&nbsp;</p>
+<script>
+	
+	function userHasCamMic(cam_number,mic_number,recorderId){
+		//alert("userHasCamMic("+cam_number+","+mic_number+")");
+		//this function is called when HDFVR is initialized
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function btRecordPressed(recorderId){
+		//alert("btRecordPressed");
+		//this function is called whenever the Record button is pressed to start a recording
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function btStopRecordingPressed(recorderId){
+		//alert("btStopRecordingPressed");
+		//this function is called whenever a recording is stopped
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function btPlayPressed(recorderId){
+		//alert("btPlayPressed");
+		//this function is called whenever the Play button is pressed to start/resume playback
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function btPausePressed(recorderId){
+		//alert("btPausePressed");
+		//this function is called whenever the Pause button is pressed during playback
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onUploadDone(streamName,streamDuration,userId,recorderId){
+		//alert("onUploadDone("+streamName+","+streamDuration+","+userId+")");
+		
+		//this function is called when the video/audio stream has been all sent to the video server and has been saved to the video server HHD, 
+		//on slow client->server connections, because the data can not reach the video server in real time, it is stored in the recorder's buffer until it is sent to the server, you can configure the buffer size in avc_settings.XXX
+		
+		//this function is called with 3 parameters: 
+		//streamName: a string representing the name of the stream recorded on the video server including the .flv extension
+		//userId: the userId sent via flash vars or via the avc_settings.XXX file, the value in the avc_settings.XXX file takes precedence if its not empty
+		//duration of the recorded video/audio file in seconds but acccurate to the millisecond (like this: 4.322)
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onSaveOk(streamName,streamDuration,userId,cameraName,micName,recorderId){
+		//alert("onSaveOk("+streamName+","+streamDuration+","+userId+","+cameraName+","+micName+")");
+		
+		//the user pressed the [save] button inside the recorder and the save_video_to_db.XXX script returned save=ok
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onSaveFailed(streamName,streamDuration,userId,recorderId){
+		//alert("onSaveFailed("+streamName+","+streamDuration+","+userId+")");	
+		
+		//the user pressed the [save] button inside the recorder but the save_video_to_db.XXX script returned save=fail
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	function onSaveJpgOk(streamName,userId,recorderId){
+		//alert("onSaveJpgOk("+streamName+","+userId+")");
+		
+		//the user pressed the [save] button inside the recorder and the save_video_to_db.XXX script returned save=ok
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onSaveJpgFailed(streamName,userId,recorderId){
+		//alert("onSaveJpgFailed("+streamName+","+userId+")");	
+		//the user pressed the [save] button inside the recorder but the save_video_to_db.XXX script returned save=fail
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onFlashReady(recorderId){
+		//alert("onFlashReady()");
+		//you can now communicate with HDFVR using the JS Control API
+		//Example : document.VideoRecorder.record(); will make a call to flash in order to start recording
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	function onPlaybackComplete(recorderId){
+		//alert("onPlaybackComplete()")
+		//this function is called when HDFVR plays back a recorded video and the playback completes
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+	}
+	
+	
+	function onCamAccess(allowed,recorderId){
+		//alert("onCamAccess("+allowed+")");
+		//the user clicked Allow or Deny in the Camera/Mic access dialog box in Flash Player
+		//when the user clicks Deny this function is called with allowed=false
+		//when the user clicks Allow this function is called with allowed=true
+		//you should wait for this function before allowing the user to cal the record() function on HDFVR
+		//this function can be called anytime during the life of the HDFVR instance as the user has permanent access to the Camera/Mic access dialog box in Flash Player
+		//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+		if (allowed){
+			document.getElementById("recordbtn").disabled = false
+		}else{
+			document.getElementById("recordbtn").disabled = true
+		}
+	}
+</script>
+</body>
+</html>
